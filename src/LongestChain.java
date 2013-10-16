@@ -66,7 +66,7 @@ class LongestChain
 	int maxChainLength = 0;
 	WordRec maxChainRec = null;
 	for (int i = 0; i < WordList.size; i++) {
-	    WordRec x = BreadthFirst(WordList.WordAt(i), endWord);
+	    WordRec x = BreadthFirst(/*WordList.WordAt(i)*/ null, endWord);
 	    if (x != null) {
 		int len = x.ChainLength();
 		if (len > maxChainLength) {
