@@ -1,13 +1,11 @@
 class LongestChain
 {
-    private Queue q; // kÃ¶ som anvÃ¤nds i breddenfÃ¶rstsÃ¶kningen
-    private String goalWord; // slutord i breddenfÃ¶rstsÃ¶kningen
+    private Queue q; // kö som används i breddenförstsökningen
+    private String goalWord; // slutord i breddenförstsökningen
     int wordLength;
-    final char [] alphabet = {
-	    'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i',
-	    'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r',
-	    's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'Ã¥',
-	    'Ã¤', 'Ã¶', 'Ã©' };
+    final char[] alphabet =
+	    { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w',
+		    'x', 'y', 'z', 'å', 'ä', 'ö', 'é' };
     int alphabetLength = alphabet.length;
 
     public LongestChain(int wordLength) {
@@ -15,23 +13,21 @@ class LongestChain
 	q = new Queue();
     }
 
-    // IsGoal kollar om w Ã¤r slutordet.
-    private boolean IsGoal(String w)
-    {
+    // IsGoal kollar om w är slutordet.
+    private boolean IsGoal(String w) {
 	return w.equals(goalWord);
     }
 
-    // MakeSons skapar alla ord som skiljer pÃ¥ en bokstav frÃ¥n x.
-    // Om det Ã¤r fÃ¶rsta gÃ¥ngen i sÃ¶kningen som ordet skapas sÃ¥ lÃ¤ggs det
-    // in i kÃ¶n q.
-    private WordRec MakeSons(WordRec x)
-    {
+    // MakeSons skapar alla ord som skiljer på en bokstav från x.
+    // Om det är första gången i sökningen som ordet skapas så läggs det
+    // in i kön q.
+    private WordRec MakeSons(WordRec x) {
 	for (int i = 0; i < wordLength; i++) {
 	    for (int c = 0; c < alphabetLength; c++) {
 		if (alphabet[c] != x.word.charAt(i)) {
-		    String res = WordList.Contains(x.word.substring(0,i) +
+		    String res = WordList.Contains(x.word.substring(0, i) +
 						   alphabet[c] +
-						   x.word.substring(i+1));
+						   x.word.substring(i + 1));
 		    if (res != null && WordList.MarkAsUsedIfUnused(res)) {
 			WordRec wr = new WordRec(res, x);
 			if (IsGoal(res)) return wr;
@@ -43,12 +39,11 @@ class LongestChain
 	return null;
     }
 
-    // BreadthFirst utfÃ¶r en breddenfÃ¶rstsÃ¶kning frÃ¥n startWord fÃ¶r att
-    // hitta kortaste vÃ¤gen till endWord. Den kortaste vÃ¤gen returneras
+    // BreadthFirst utför en breddenförstsökning från startWord för att
+    // hitta kortaste vägen till endWord. Den kortaste vägen returneras
     // som en kedja av ordposter (WordRec).
-    // Om det inte finns nÃ¥got sÃ¤tt att komma till endWord returneras null.
-    public WordRec BreadthFirst(String startWord, String endWord)
-    {
+    // Om det inte finns något sätt att komma till endWord returneras null.
+    public WordRec BreadthFirst(String startWord, String endWord) {
 	WordList.EraseUsed();
 	WordRec start = new WordRec(startWord, null);
 	WordList.MarkAsUsedIfUnused(startWord);
@@ -65,10 +60,9 @@ class LongestChain
 	}
     }
 
-    // CheckAllStartWords hittar den lÃ¤ngsta kortaste vÃ¤gen frÃ¥n nÃ¥got ord
-    // till endWord. Den lÃ¤ngsta vÃ¤gen skrivs ut.
-    public void CheckAllStartWords(String endWord)
-    {
+    // CheckAllStartWords hittar den längsta kortaste vägen från något ord
+    // till endWord. Den längsta vägen skrivs ut.
+    public void CheckAllStartWords(String endWord) {
 	int maxChainLength = 0;
 	WordRec maxChainRec = null;
 	for (int i = 0; i < WordList.size; i++) {
@@ -78,7 +72,7 @@ class LongestChain
 		if (len > maxChainLength) {
 		    maxChainLength = len;
 		    maxChainRec = x;
-		    // x.PrintChain(); // skriv ut den hittills lÃ¤ngsta kedjan
+		    // x.PrintChain(); // skriv ut den hittills längsta kedjan
 		}
 	    }
 	}
