@@ -20,15 +20,15 @@ public class Main
 		WordRec wr = lc.BreadthFirst(tokens[0], tokens[1]);
 		if (wr == null) {
 		    System.out.println(tokens[0] + " " +
-				       tokens[1] + ": ingen lösning");
+				       tokens[1] + ": ingen lÃ¶sning");
 		} else {
 		    System.out.println(tokens[0] + " " +
 				       tokens[1] + ": " + wr.ChainLength() + " ord");
 		    wr.PrintChain();
 		}
 	    } else {
-		System.out.println("felaktig fråga: '" + line + "'");
-		System.out.println("syntax för frågor: slutord");
+		System.out.println("felaktig frÃ¥ga: '" + line + "'");
+		System.out.println("syntax fÃ¶r frÃ¥gor: slutord");
 		System.out.println("eller:             startord slutord");
 	    }
 	}

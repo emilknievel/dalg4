@@ -1,4 +1,4 @@
-// Queue är en kö med metoderna Put, Get, IsEmpty och Empty.
+// Queue Ã¤r en kÃ¶ med metoderna Put, Get, IsEmpty och Empty.
 
 class ListNode
 {

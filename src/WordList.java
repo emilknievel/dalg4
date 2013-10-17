@@ -2,18 +2,18 @@ import java.util.HashMap;
 import java.util.Vector;
 import java.io.*;
 
-// Klassen WordList innehåller en ordlista och en datastruktur som håller
-// reda på använda ord.
+// Klassen WordList innehÃ¥ller en ordlista och en datastruktur som hÃ¥ller
+// reda pÃ¥ anvÃ¤nda ord.
 
 class WordList
 {
     static private HashMap<String, Boolean> list; // ordlista
-    //static private Vector<String> used; // databas med använda ord
+    //static private Vector<String> used; // databas med anvÃ¤nda ord
     static int wordLength;
     static int size; // antal ord i ordlistan
 
-    // Read läser in en ordlista från strömmen input. Alla ord ska ha
-    // wordLength bokstäver.
+    // Read lÃ¤ser in en ordlista frÃ¥n strÃ¶mmen input. Alla ord ska ha
+    // wordLength bokstÃ¤ver.
     static public void Read(int wordLength_, BufferedReader input) throws IOException {
 	wordLength = wordLength_;
 	size = 0;
@@ -22,7 +22,7 @@ class WordList
 	    String s = input.readLine();
 	    if (s.equals("#")) break;
 	    if (s.length() != wordLength) System.out.println("Rad " + size +
-							     " i filen innehåller inte " +
+							     " i filen innehÃ¥ller inte " +
 							     wordLength + " tecken.");
 	    //list.add(s);
 	    list.put(s, false); // used is false before being used
@@ -37,7 +37,7 @@ class WordList
 	else return null;
     }*/
 
-    // Contains slår upp w i ordlistan och returnerar ordet om det finns med.
+    // Contains slÃ¥r upp w i ordlistan och returnerar ordet om det finns med.
     // Annars returneras null.
     static public String Contains(String w) {
 	if (list.containsKey(w)) {
@@ -50,10 +50,10 @@ class WordList
 	else return null;
     }*/
 
-    // MarkAsUsedIfUnused kollar om w är använt tidigare och returneras i så
-    // fall false. Annars markeras w som använt och true returneras.
+    // MarkAsUsedIfUnused kollar om w Ã¤r anvÃ¤nt tidigare och returneras i sÃ¥
+    // fall false. Annars markeras w som anvÃ¤nt och true returneras.
     static public boolean MarkAsUsedIfUnused(String w) {
-	if (!list.get(w)) {
+	if (w != null && !list.get(w)) {
 	    list.put(w, true);
 	    return true;
 	}
@@ -65,7 +65,7 @@ class WordList
 	return true;
     }*/
 
-    // EraseUsed gör så att inga ord anses använda längre.
+    // EraseUsed gÃ¶r sÃ¥ att inga ord anses anvÃ¤nda lÃ¤ngre.
     static public void EraseUsed() {
 	for (String word : list.keySet()) {
 	    list.put(word, false);
